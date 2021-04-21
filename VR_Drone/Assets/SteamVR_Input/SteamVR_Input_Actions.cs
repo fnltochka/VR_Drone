@@ -55,6 +55,14 @@ namespace Valve.VR
         
         private static SteamVR_Action_Pose p_mixedreality_ExternalCamera;
         
+        private static SteamVR_Action_Boolean p_drone_Lt_Trackpad;
+        
+        private static SteamVR_Action_Vector2 p_drone_Lt_TrackpadPos;
+        
+        private static SteamVR_Action_Boolean p_drone_Rt_Trackpad;
+        
+        private static SteamVR_Action_Vector2 p_drone_Rt_TrackpadPos;
+        
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -207,6 +215,38 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean drone_Lt_Trackpad
+        {
+            get
+            {
+                return SteamVR_Actions.p_drone_Lt_Trackpad.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 drone_Lt_TrackpadPos
+        {
+            get
+            {
+                return SteamVR_Actions.p_drone_Lt_TrackpadPos.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean drone_Rt_Trackpad
+        {
+            get
+            {
+                return SteamVR_Actions.p_drone_Rt_Trackpad.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Vector2 drone_Rt_TrackpadPos
+        {
+            get
+            {
+                return SteamVR_Actions.p_drone_Rt_TrackpadPos.GetCopy<SteamVR_Action_Vector2>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -228,7 +268,11 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Throttle,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
-                    SteamVR_Actions.mixedreality_ExternalCamera};
+                    SteamVR_Actions.mixedreality_ExternalCamera,
+                    SteamVR_Actions.drone_Lt_Trackpad,
+                    SteamVR_Actions.drone_Lt_TrackpadPos,
+                    SteamVR_Actions.drone_Rt_Trackpad,
+                    SteamVR_Actions.drone_Rt_TrackpadPos};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -247,7 +291,11 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Throttle,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
-                    SteamVR_Actions.mixedreality_ExternalCamera};
+                    SteamVR_Actions.mixedreality_ExternalCamera,
+                    SteamVR_Actions.drone_Lt_Trackpad,
+                    SteamVR_Actions.drone_Lt_TrackpadPos,
+                    SteamVR_Actions.drone_Rt_Trackpad,
+                    SteamVR_Actions.drone_Rt_TrackpadPos};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -265,13 +313,17 @@ namespace Valve.VR
                     SteamVR_Actions.default_SnapTurnRight,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Brake,
-                    SteamVR_Actions.buggy_Reset};
+                    SteamVR_Actions.buggy_Reset,
+                    SteamVR_Actions.drone_Lt_Trackpad,
+                    SteamVR_Actions.drone_Rt_Trackpad};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
                     SteamVR_Actions.platformer_Move,
-                    SteamVR_Actions.buggy_Steering};
+                    SteamVR_Actions.buggy_Steering,
+                    SteamVR_Actions.drone_Lt_TrackpadPos,
+                    SteamVR_Actions.drone_Rt_TrackpadPos};
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
             Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[] {
                     SteamVR_Actions.default_SkeletonLeftHand,
@@ -290,7 +342,11 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Steering,
                     SteamVR_Actions.buggy_Throttle,
                     SteamVR_Actions.buggy_Brake,
-                    SteamVR_Actions.buggy_Reset};
+                    SteamVR_Actions.buggy_Reset,
+                    SteamVR_Actions.drone_Lt_Trackpad,
+                    SteamVR_Actions.drone_Lt_TrackpadPos,
+                    SteamVR_Actions.drone_Rt_Trackpad,
+                    SteamVR_Actions.drone_Rt_TrackpadPos};
         }
         
         private static void PreInitActions()
@@ -314,6 +370,10 @@ namespace Valve.VR
             SteamVR_Actions.p_buggy_Brake = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/buggy/in/Brake")));
             SteamVR_Actions.p_buggy_Reset = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/buggy/in/Reset")));
             SteamVR_Actions.p_mixedreality_ExternalCamera = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/mixedreality/in/ExternalCamera")));
+            SteamVR_Actions.p_drone_Lt_Trackpad = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/drone/in/Lt_Trackpad")));
+            SteamVR_Actions.p_drone_Lt_TrackpadPos = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/drone/in/Lt_TrackpadPos")));
+            SteamVR_Actions.p_drone_Rt_Trackpad = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/drone/in/Rt_Trackpad")));
+            SteamVR_Actions.p_drone_Rt_TrackpadPos = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/drone/in/Rt_TrackpadPos")));
         }
     }
 }

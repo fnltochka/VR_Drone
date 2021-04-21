@@ -81,6 +81,22 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/drone/in/Lt_Trackpad",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/drone/in/Lt_TrackpadPos",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/drone/in/Rt_Trackpad",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/drone/in/Rt_TrackpadPos",
+      "type": "vector2"
     }
   ],
   "action_sets": [
@@ -98,6 +114,10 @@
     },
     {
       "name": "/actions/mixedreality",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/drone",
       "usage": "single"
     }
   ],
